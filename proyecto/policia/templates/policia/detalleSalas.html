@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+
+
+	 <center><h2>Información de la sala: {{detalleSalas.nombreSala}}</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+
+
+{% load static %}
+
+	<table class="table table-hover">
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+			<tr>
+				<th scope="col"><center>Nombre</center></th>
+				<th scope="col"><center>Num. Asientos </center></th>
+				<th scope="col"><center>Descripción</center></th>
+  				<th scope="col"><center>Imagen</center></th>
+  				<!--<th scope="col"><center>Asientos</center></th>
+  				<th scope="col"><center>Fila</center></th>
+  				<th scope="col"><center>Columna</center></th>-->
+			</tr>
+		</thead>
+			<tr>
+				<td><center>{{detalleSalas.nombreSala}}</center></td>
+				<td><center>{{detalleSalas.numAsientos}}</center></td>
+				<td><center>{{detalleSalas.descripcionSala}}</center></td>
+    				<td><center>{% if detalleSalas.imagenSala %}
+		<a href="/policia{{detalleSalas.imagenSala.url}}"> <img  src="/policia{{detalleSalas.imagenSala.url}}" class="img-responsive" style="width:150px;height:150px;" /></a>
+				{% endif %}</center></td>
+
+				
+
+    	</tr>
+	</table>
+
+	<a href='{% url 'salas' %}' class="btn btn-primary" style="background: black; float: right">Atrás</a>
+
+{% endblock %}

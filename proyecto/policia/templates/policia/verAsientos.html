@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+ <center><h2>Asientos sala: {{salas.nombreSala}}</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+	
+
+	<table class="table">
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+			<tr>
+				<th scope="col"><center>Asiento</center></th>
+				<th scope="col"><center>Fila</center></th>
+				<th scope="col"><center>Columna</center></th>
+				<th scope="col"><center>Editar</center></th>
+				<th scope="col"><center>Borrar</center></th>
+			</tr>
+		
+		
+		<tbody>
+		{% for a in asientos %}
+			<tr>
+				<td><center> {{a.numAsiento}}</center></td>
+				<td><center>{{a.filaAsiento}}</center></td>
+				<td><center>{{a.columnaAsiento}}</center></td>
+				<td><center><a style="color: green;" href="{% url 'editAsientos' a.idAsiento %}"onclick="return confirm('¿ Deseas editar este asiento ?')"> <span class="glyphicon glyphicon-pencil"></span></a></center></td>
+				<th scope="col"><center> <a style="color: red;" href='{% url 'borrarAsientos' a.idAsiento %}' onclick="return confirm('¿ Deseas borrar este asiento ?')"> x</a></center></td>
+				
+			</tr>
+		{% endfor %}
+
+	</tbody>
+	</table>
+	
+	<ul class="pagination" style="margin-top:0px;margin-bottom:10px;">
+		    {% if asientos.has_previous %}
+		    	<li><a style="color: black" href="?page={{ asientos.previous_page_number }}">Anterior</a></li>
+		    {% endif %}
+		    {% for pg in asientos.paginator.page_range %}
+			{% if asientos.number == pg %}
+			    <li class="active"><a style="background: black; border: 1px solid black"href="?page={{ pg }}">{{ pg }}</a></li>
+			{% else %}
+			    <li><a style="color: black" href="?page={{ pg }}">{{ pg }}</a></li>
+			{% endif %}
+		    {% endfor %}
+		    {% if asientos.has_next %}
+			    <li><a style="color: black" href="?page={{ asientos.next_page_number }}">Siguiente</a></li>
+		    {% endif %}
+		</ul>	
+	
+
+<a href='{% url 'salas' %}' class="btn btn-primary" style="background: black; float: right; margin-top: -3%;">Atrás</a>
+
+{% endblock %}

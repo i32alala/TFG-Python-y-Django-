@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+
+	<center><h2>Elige a las personas del organismo: {{organismo.nombreOrganismo}}</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+	
+	<form action="{% url 'incluir'  %}" method="POST">
+	{% csrf_token %}
+	
+	<input type="hidden" name="acto" value="{{acto.idActo}}" />
+	
+	
+	<table class="table table-hover">		
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+			<tr>
+				<td scope="col"><center>Cargo</center></td>
+				<td scope="col"><center>Nombre</center></td>
+				<td scope="col"><center>Apellidos</center></td>
+				<td scope="col"><center>Invitar</center></td>					
+				
+			</tr>
+		</thead>
+	
+		<tr>
+		
+		
+	
+		{% for p in personas %}
+		
+				
+		<tr>	
+			<td><center> {{p.cargo}}</td>
+			<td><center>{{p.nombrePersona}}</center></td>
+			<td><center>{{p.apellido}}</center></td>
+			<td><center><input type="checkbox" name="personas" value="{{p.idPersona}}" /></center></td>
+			
+			
+		</tr>
+	
+			
+	
+	{% endfor %}
+
+			
+
+	
+	</table>
+		
+	
+		
+		<input class="form-control" class type="submit" name="enviar" value="Invitar">
+	
+	
+	</form>
+	
+	<br />
+	
+	<a href='{% url 'actos' %}' class="btn btn-primary" style="background: black; float: right">Atrás</a>
+	
+
+
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% if confirmadas %}
+<div id="HTMLtoPDF">
+
+      		
+      		
+      		<center><h2>Asientos asignados para el acto: {{noticias.nombreActo}} </h2></center>
+      		<center><h3>Sala: {{sal.nombreSala}} </h3></center>
+                <hr style="border: 1px solid #eee !important"/>
+
+<div class="row">
+<div class="col-md-12">
+
+ <table class="table table-hover">
+	
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+			<tr>
+
+
+
+
+ 	<!--<td scope="col"><center>Numeración</center> </td>-->
+ 	<td scope="col"><center>Nombre</center> </td>
+ 	<td scope="col"><center>Apellidos</center>  </td>
+ 	<td scope="col"><center>Orden</center> </td>
+ 	<td scope="col"><center>Organismo</center> </td>
+ 	<td scope="col"><center>Asiento</center></td>
+ 	<td scope="col"><center>Fila</center></td>
+ 	<td scope="col"><center>Columna</center></td>
+
+ </tr>
+ 
+ </thead>
+ {% for c in confirmadas %}
+
+
+ {% csrf_token %}
+ 
+ {% if c.asistencia == 1 %}
+
+
+<tr>
+	<!--<td class="tabla"><center>{{forloop.counter}} </center> </td>-->
+	<td class="tabla"><center> {{c.person}}</center>  </td>
+	<td class="tabla"><center>{{c.person.apellido}}</center> </td>
+	<td class="tabla"><center> {{c.orden}}</center> </td>
+	<td class="tabla"><center> {{c.person.idOrganismo}}</center>  </td>
+	<td class="tabla"><center>{{c.numAsiento}} </center></td>
+	<td class="tabla"><center>{{c.filaAsiento}}</center></td>
+	<td class="tabla"><center>{{c.columnaAsiento}}</center></td>
+
+   {% endif %}
+
+      			      				
+      		{% endfor %}
+      </table></div>
+      </div>
+
+	
+	</div>
+	<!--	<script src="js/jspdf.js"></script>
+	<script src="js/jquery-2.1.3.js"></script>
+	<script src="js/pdfFromHTML.js"></script>
+
+	<!-- these js files are used for making PDF -->
+
+
+
+<div class="row">
+<div class="col-md-12">
+<a style=" margin-right: 2%" class="btn cancelar" onclick="HTMLtoPDF()">Descargar PDF</a>
+<a href='{% url 'actos' %}' class="btn btn-primary" style="background: black; float: right">Atrás</a>
+</div>
+</div>
+
+{% else %}
+
+
+	<center><h1> ¿Aún no ha confirmado nadie?</h1></center>
+		<center><h2>Revisa las personas invitadas</h2></center>
+		
+	<a href='{% url 'actos' %}' class="btn btn-primary" style="background: black; float: right">Atrás</a>
+	
+
+{% endif %}
+{% endblock %}

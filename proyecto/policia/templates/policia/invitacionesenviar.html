@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div>
+        <div>
+
+                        <div class="modal-header">
+                <a href='{% url 'actos' %}' class="close">x</a>
+                <h3>Información del Acto</h3>
+            </div>
+            <div class="modal-body">
+                                
+                                <div class="panel panel-default">
+                                        <div class="panel-body">
+
+                                          <a href="javascript:seleccionar_todo()">Marcar todos</a>
+                                          <br/>
+                                          <a href="javascript:deseleccionar_todo()">Marcar ninguno</a>
+
+
+
+
+
+
+
+    <form name="f1" action="/policia/sendEmail/" method="POST" enctype="multipart/form-data">
+    	{% csrf_token %}
+      {% if detalleActo%}
+
+  {% if detalleActo.person.all %}
+    	 {{ form.as_p }}
+       <h2>Personas</h2>
+
+        {% for p in detalleActo.person.all %}
+
+        	<input type="checkbox" id="{{p.correo}}" value="{{p.correo}}" name="choices"> {{p.nombrePersona}}  <br />
+
+        {% endfor %}
+        {% endif %}
+      {% endif %}
+
+<h3> Invitaciones aasdfa</h3>
+
+   
+
+    	<input type="file" id="file" name="file"> 
+
+     
+
+        <input type="text" id="asunto" value="asunto" name="asunto">
+        <input type="textarea" id="mensaje" value="mensaje" name="mensaje">
+
+
+
+        <input type="submit" id="enviar" name="enviar">
+
+        </form>
+
+
+
+
+
+
+  {% endblock %}

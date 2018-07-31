@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block content %}
+	
+		 <center><h2>Editar Asiento</h2></center>
+         <hr style="border: 1px solid #eee !important"/>
+	
+	
+	<form id="form" method="POST" enctype="multipart/form-data" action="" style="background-color:white;padding:20px;border-radius:5px;margin-bottom:20px;">
+		{% csrf_token %}
+		{{ foobar|safe }}
+		<div class="form-row">
+          			<div class="form-group col-md-6">
+ 				
+                                                {{ form.numAsiento | bootstrap}}
+                                                
+                                </div>
+				<div class="form-group col-md-6">
+                                                {{ form.filaAsiento | bootstrap}}
+                                                
+                                </div>
+                </div>		
+		<div class="form-row">
+          			<div class="form-group col-md-6">
+                                                {{ form.columnaAsiento | bootstrap}}
+                                </div>
+                                <div class="form-group col-md-6">                
+                                                {{ form.idSala | bootstrap}}
+                                </div>
+                </div>
+           
+		<button class="btn btn-large btn-primary" type="submit" style="background: black; margin-left: 2%"">Editar</button>
+		<a href='{% url 'salas' %}' style=" margin-right: 2%" class="btn cancelar">Cancelar</a>
+	</form>
+{% endblock %}
+

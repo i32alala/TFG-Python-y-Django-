@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% if confirmadas %}
+
+<h2> Confirmar Invitación Personas para el acto: {{noticias.nombreActo}} </h2>
+
+
+
+
+{% for c in confirmadas %}
+      		      			
+      			<form action="{% url 'nuevoOrdena'  %}" method="POST">{% csrf_token %}
+              {{c.person}} 
+              <input type="hidden" name="person" value="{{c.person.pk}} " />
+              <input type="hidden" name="acto" value="{{c.acto.pk}} " />
+             {% if c.asistencia == 0 %}
+             <input type="checkbox" name="asistencia" checked="checked" style="display:none;" />
+             
+              <input type="submit" value="Confirmar" name="btnConfirmarAsistencia" id="btnConfirmarAsistencia" />              
+              {% elif c.asistencia == 1 %}
+              <input type="checkbox" name="asistencia" style="display:none;"/>
+              
+              <input type="submit" value="DESConfirmar" name="btnConfirmarAsistencia" id="btnConfirmarAsistencia" />
+              {% endif %}
+           </form>
+      			      				
+      		{% endfor %}
+
+{% endif %}
+
+
+{% endblock %}

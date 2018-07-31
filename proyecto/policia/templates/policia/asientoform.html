@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load bootstrap %}
+
+{% block nuevos %}
+
+
+                <form role="form" action="{% url 'asientosNuevos' %}" method="post" enctype='multipart/form-data'>
+
+ 
+       <center><h2>Añadir Asiento</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+    
+
+                                {% csrf_token %}
+ 				
+ 		<div class="form-row">
+          			<div class="form-group col-md-6">
+ 				
+                                                {{ formulario.numAsiento | bootstrap}}
+                                                
+                                </div>
+				<div class="form-group col-md-6">
+                                                {{ formulario.idSala | bootstrap}}
+                                                
+                                </div>
+                </div>
+		
+		<div class="form-row">
+          			<div class="form-group col-md-6">
+                                                {{ formulario.filaAsiento | bootstrap}}
+                                </div>
+                                <div class="form-group col-md-6">                
+                                                {{ formulario.columnaAsiento | bootstrap}}
+                                </div>
+                </div>
+          
+
+                                        <input type="submit" class="btn btn-primary" style="background: black; margin-left: 2%" name="submit" value="Guardar">
+                                        <a href='{% url 'salas' %}' style=" margin-right: 2%" class="btn cancelar">Cancelar</a>
+
+                </form>
+
+{% endblock %}

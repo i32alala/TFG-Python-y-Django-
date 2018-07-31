@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block nuevos %}
+
+
+	<center><h2>Añadir Organismos</h2></center>
+         <hr style="border: 1px solid #eee !important"/>
+
+
+
+                <form role="form" action="{% url 'nuevoOrganismo' %}" method="post">
+
+
+
+           
+                                {% csrf_token %}
+
+   
+	<div class="form-group" style="margin-left: 16px; margin-right: 16px;">
+        	
+        	{{ formulario.nombreOrganismo|bootstrap }}
+        </div>
+
+
+            <input type="submit" class="btn btn-primary" style="background: black; margin-left: 2%" name="submit" value="Guardar">
+            <a href='{% url 'organismos' %}' tyle=" margin-right: 2%" class="btn cancelar">Cancelar</a>
+
+                </form>
+
+{% endblock %}

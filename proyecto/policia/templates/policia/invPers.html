@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% load static %}
+
+
+	  <center><h2>Elige invitados mediante organismos</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+
+
+	<table class="table table-hover">		
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+			<tr>
+				<td scope="col"><center>Organismos</center></td>
+				
+			</tr>
+		</thead>
+		
+		
+
+		<tbody>
+		{% for p in organismos %}
+			<tr><center>
+			
+				<td><center><a href='{% url 'personActo' actos.idActo p.idOrganismo %}'>{{p.nombreOrganismo}}</a></center></td>
+			</center>
+			</tr>		
+			{% endfor %}
+		</tbody>
+				
+	
+		
+
+	
+	</table>
+		
+	<a href='{% url 'actos' %}' class="btn btn-primary" style="background: black; float: right">Atrás</a>
+
+{% endblock %}
+
+

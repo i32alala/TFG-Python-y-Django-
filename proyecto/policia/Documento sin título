@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% if noticias%}
+
+<h2> Confirmar Invitación Personas para el acto: {{noticias.nombreActo}} </h2>
+
+
+    {% if noticias.person.all %}
+
+
+        {%for per in noticias.person.all%}
+            <form action="{% url 'nuevoactoPersona'  %}" method="POST">
+              {% csrf_token %}
+              {{per.nombrePersona}}
+              
+              
+              <input type="hidden" name="person" value="{{per.idPersona}} " />
+              <input type="hidden" name="acto" value="{{noticias.idActo}} " />
+              <input type="submit" value="Confirmar" name="btnConfirmarAsistencia" id="btnConfirmarAsistencia" />
+              
+   
+           </form>
+        {% endfor %}
+
+
+    {% endif %}
+{% endif %}
+
+
+       {% if desconfirmar %}
+       		
+      		{% for c in desconfirmar %}
+      		
+      			{% if c.asistencia == 0 %}
+      			
+      				{{c.person}}<br />
+      				
+      			{% endif %}
+      		
+      		{% endfor %}
+		
+	{% endif %}
+
+
+{% endblock %}

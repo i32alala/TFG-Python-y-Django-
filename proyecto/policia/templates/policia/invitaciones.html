@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+		<center><h2>Invitaciones</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+                
+		
+
+	<table class="table">
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+			
+			<tr>
+				<th scope="col"><center>Nombre</center></th>
+				<th scope="col"><center>Archivo </center></th>
+				<th scope="col"><center>Descargar Archivo</center></th>
+				<th scope="col"><center>Editar </center></th>
+				<th scope="col"><center>Borrar </center></th>
+				
+			</tr>
+			
+	<tbody>
+			
+	{% for i in invitacion%}
+	
+		<tr>
+			<th scope="row"><center> {{i.nombreInvitacion}}</center> </th>
+			<td> <center>{{i.archivo}} </center></td>
+			<td> <center><a style="color: black;"  href="{{i.archivo.url}}"><span class="glyphicon glyphicon-download-alt"></span></a></center></td>
+			<td><center><a style="color: green;"  href='{% url 'editInvitacion' i.idInvitaciones %}' onclick="return confirm('¿ Deseas editar esta invitación ?')"> <span class="glyphicon glyphicon-pencil"></span></a></center></td>
+			<td><center><a style="color: red;"  href='{% url 'deleteInvitaciones' i.idInvitaciones %}'> x</a> </center></td>
+		</tr>
+	{% endfor %}
+	
+	</tbody>
+	</thead>
+	</table>
+
+
+	
+
+			
+			<a href='{% url 'actosInvita' %}' class="btn btn-primary" style="background: black; float: left">Enviar invitación</a>
+			<a href='{% url 'nuevaInvitacion' %}' class="btn btn-primary" style="background: black; float: right">Añadir</a>
+	
+
+{% endblock %}

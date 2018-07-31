@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+             
+        	<center><h2>Información de la etiqueta</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+
+	<table class="table">
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+
+			<tr>
+				<th scope="col"><center>Nombre</center></th>
+				<th scope="col"><center>Parte de arriba</center></th>
+				<th scope="col"><center>Pantalón</center></th>
+				<th scope="col"><center>Gorro</center></th></tr></thead>
+		
+				<tr>
+				<td><center>{{detalleEtiqueta.nombreEtiqueta}}</center></td>
+				<td><center>{{detalleEtiqueta.parteArriba}}</center></td>
+				<td><center>{{detalleEtiqueta.parteAbajo}}</center></td>
+       				<td><center>{{detalleEtiqueta.gorro}}</center></td></tr>
+       				<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+				
+				<tr>
+				<th scope="col"><center>Zapatos</center></th>
+				<th scope="col"><center>Corbata</center></th>
+				<th scope="col"><center>Medias</center></th>
+				<th scope="col"><center>Cinturón</center></th></tr></thead>
+				<tr>
+       				<td><center>{{detalleEtiqueta.zapatos}}</center></td>
+				<td><center>{{detalleEtiqueta.corbata}}</center></td>
+				<td><center>{{detalleEtiqueta.medias}}</center></td>
+       				<td><center>{{detalleEtiqueta.cinturon}}</center></td></tr>
+       		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+			<tr>
+				<th scope="col"><center>Bolso</center></th>
+				<th scope="col"><center>Falda</center></th>
+				<th scope="col"><center>Chaqueta</center></th>
+				<th scope="col"><center>Jersey</center></th>
+
+			</tr></thead>
+		</thead>
+		
+			<tr>
+       				<td><center>{{detalleEtiqueta.bolso}}</center></td>
+				<td><center>{{detalleEtiqueta.falda}}</center></td>
+				<td><center>{{detalleEtiqueta.chaqueta}}</center></td>
+       				<td><center>{{detalleEtiqueta.jersey}}</center></td>
+    			</tr>
+		</tbody>
+	</table>
+
+ 	<a href="{% url 'etiqueta' %}" class="btn btn-primary" style="background: black; float: right">Atrás</a>
+
+{% endblock %}

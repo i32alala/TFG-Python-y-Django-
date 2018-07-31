@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block nuevos %}
+<div>
+				
+	       <center><h2>Añadir Acto</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+
+
+	<form role="form" action="{% url 'nuevoActo' %}" action="/policia/sendEmail/" method="post" enctype='multipart/form-data'>
+	{% csrf_token %}
+	
+	<div class="form-row">
+          			<div class="form-group col-md-6">
+					{{ formulario.nombreActo|bootstrap }}
+				</div>
+				<div class="form-group col-md-6">
+					{{formulario.fechaActo|bootstrap}}
+				</div>
+	</div>
+	
+        <div class="form-group" style="margin-left: 16px; margin-right: 16px;">
+        	
+        	{{formulario.descripcionActo|bootstrap}}
+        </div>
+        
+        <div class="form-row">
+        	<div class="form-group col-md-6">
+					{{ formulario.idSala|bootstrap }}
+				</div>
+				<div class="form-group col-md-6">
+					{{formulario.idEtiqueta|bootstrap}}
+				</div>
+        
+        </div>
+																								
+																				
+	<input type="submit" class="btn btn-primary" style="background: black; margin-left: 2%" name="submit" value="Guardar">
+	<a href='{% url 'salas' %}' style=" margin-right: 2%" class="btn cancelar">Cancelar</a>
+</form>
+
+{% endblock %}

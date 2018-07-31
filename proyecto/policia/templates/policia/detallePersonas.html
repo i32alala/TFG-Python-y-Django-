@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+
+ 	 <center><h2>Información sobre {{personas.nombrePersona}}</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+
+
+	<table class="table table-hover">
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+			<tr>
+				<th scope="col"><center>Nombre</center></th>
+				<th scope="col"><center>Apellidos</center></th>
+				<th scope="col"><center>Cargo</center></th>
+				<th scope="col"><center>Email</center></th>
+				<th scope="col"><center>Organismo</center></th>
+        			
+			</tr>
+		</thead>
+			<tr>
+				<td><center>{{personas.nombrePersona}}</center></td>
+				<td><center>{{personas.apellido}}</center></td>
+				<td><center>{{personas.cargo}}</center></td>
+				<td><center>{{personas.correo}}</center></td>
+				<td><center>{{personas.idOrganismo}}</center></td>
+				
+     			</tr>
+
+
+
+
+
+
+	</table>
+
+	<a href='{% url 'mostrarPersonas' %}' class="btn btn-primary" style="background: black; float: right">Atrás</a>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+
+{% block contentPersonas %}
+
+	<center><h2>Personas</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+                
+                
+                
+                <table class="table">
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+
+			<tr>
+				<th scope="col"><center>Nombre</center></th>
+				<th scope="col"><center>Apellidos</center></th>
+				<th scope="col"><center>Detalle</center></th>
+				<th scope="col"><center>Editar</center></th>
+				<th scope="col"><center>Borrar</center></th>
+			</tr>
+			
+		<tbody>
+                
+                
+                
+	{% for m in mostrarpersona %}
+
+	
+			<tr>
+				<th scope="row"><center>{{m.nombrePersona}}</center></th>
+				<th scope="row"><center>{{m.apellido}}</center></th>
+				<td><center><a style="color: #2993d1;" href='{% url 'personaDetail' m.idPersona %}' ><span class="glyphicon glyphicon-eye-open"></span></a></center></td>
+				
+				<td><center><a style="color: green;" href='{% url 'editPersonas' m.idPersona %}' onclick="return confirm('¿ Deseas editar a {{m.nombrePersona}} ?')"> <span class="glyphicon glyphicon-pencil"></span></a></center></td>
+				<td><center> <a style="color: red;" href='{% url 'deletePersonas' m.idPersona %}' onclick="return confirm('¿ Deseas borrar a {{m.nombrePersona}} ?')"> x</a> </center></td>
+	</tr>{% endfor %}
+	</tbody>
+	</thead>
+	</table>
+
+		<ul class="pagination" style="margin-top:0px;margin-bottom:10px;">
+			{% if mostrarpersona.has_previous %}
+				<li><a style="color: black" href="?page={{ mostrarpersona.previous_page_number }}">Anterior</a></li>
+		        {% endif %}
+			{% for pg in mostrarpersona.paginator.page_range %}
+				{% if mostrarpersona.number == pg %}
+					<li class="active"><a style="background: black; border: 1px solid black"href="?page={{ pg }}">{{ pg }}</a></li>		
+				{% else %}
+				       <li><a style="color: black" href="?page={{ pg }}">{{ pg }}</a></li>
+				{% endif %}
+			{% endfor %}
+			{% if mostrarpersona.has_next %}
+				<li><a style="color: black" href="?page={{ mostrarpersona.next_page_number }}">Siguiente</a></li>
+			{% endif %}
+		</ul>		
+	
+
+
+
+
+
+
+    
+    <a href='{% url 'newpers' %}' class="btn btn-primary" style="background: black; float: right">Añadir</a>
+    <a href='{% url 'roles' %}' class="btn btn-primary" style="background: black; float: right; margin-right: 1%">Establecer Roles</a>
+
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% if confirmadas%}
+
+
+	<center><h2> Confirmar invitación Personas para el acto: {{noticias.nombreActo}} </h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+
+
+	<table class="table table-hover">		
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+			<tr>
+				<td scope="col"><center>Nombre</center></td>
+				<td scope="col"><center>Apellidos </center></td>
+				<td scope="col"><center>Confirma/Desconfirma</center></td>					
+				
+			</tr>
+		</thead>
+
+
+
+{% for c in confirmadas %}
+      		      				
+      			<form action="{% url 'nuevoactoPersona'  %}" method="POST">
+              {% csrf_token %}
+             
+             <tr>
+             	<td><center> {{c.person}} </center>
+             	<td><center>{{c.person.apellido}} </center></td>
+              <input type="hidden" name="person" value="{{c.person.pk}} " />
+              <input type="hidden" name="acto" value="{{c.acto.pk}} " />
+              <input type="hidden" name="orden" value="-1" />
+             {% if c.asistencia == 0 %}
+            	 <input type="checkbox" name="asistencia" checked="checked" style="display:none;" />
+             
+             	<td><center> <input class="form-control" style="width: 50%" type="submit" value="Confirmar" name="btnConfirmarAsistencia" id="btnConfirmarAsistencia" /></center></td>              
+              {% elif c.asistencia == 1 %}
+              <input type="checkbox" name="asistencia" style="display:none;"/>
+              
+             <td><center> <input class="form-control" style="width: 50%" type="submit" value="Desconfirmar" name="btnConfirmarAsistencia" id="btnConfirmarAsistencia" /></td></center>
+             
+            </tr> 
+              {% endif %}
+           </form>
+      			      				
+      		{% endfor %}
+
+
+</table>
+
+	<a href='{% url 'actos' %}' class="btn btn-primary" style="background: black; float: right">Atrás</a>
+{% else %}	
+	
+	<center><h1>Para ver los invitados, primero debes invitar a las personas </h1></center>
+	<a href='{% url 'actos' %}' class="btn btn-primary" style="background: black; float: right">Atrás</a>
+
+{% endif %}
+
+
+{% endblock %}

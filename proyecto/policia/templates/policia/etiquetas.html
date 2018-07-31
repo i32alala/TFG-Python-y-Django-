@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	
+	<center><h2>Etiquetas</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+                
+                
+         <table class="table">
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+
+			<tr>
+				<th scope="col"><center>Nombre</center></th>
+				<th scope="col"><center>Detalle</center></th>
+				<th scope="col"><center>Editar</center></th>
+				<th scope="col"><center>Borrar</center></th>
+			</tr>
+		</thead>
+                
+           <tbody>
+                
+	{% for e in etiquetas %}
+
+			<tr>
+				<td><center>{{e.nombreEtiqueta}}</center></td>				
+				<td><center><a style="color: #2993d1;" href='{% url 'etiquetaDetail' e.idEtiqueta  %}'><span class="glyphicon glyphicon-eye-open"></span></a></center></td>
+				<td><center><a style="color: green;" href='{% url 'editEtiqueta' e.idEtiqueta %}' onclick="return confirm('¿ Deseas editar esta etiqueta ?')"> <span class="glyphicon glyphicon-pencil"></span></a></center></td>
+				<td><center> <a style="color: red;" href='{% url 'deleteEtiqueta' e.idEtiqueta %}'> x</a></center> </td>
+
+	</tr>{% endfor %}
+	</tbody>
+	</table>
+	
+		<ul class="pagination" style="margin-top:0px;margin-bottom:10px;">
+		    {% if etiquetas.has_previous %}
+		    	<li><a style="color: black" href="?page={{ etiquetas.previous_page_number }}">Anterior</a></li>
+		    {% endif %}
+		    {% for pg in etiquetas.paginator.page_range %}
+			{% if etiquetas.number == pg %}
+			    <li class="active"><a style="background: black; border: 1px solid black"href="?page={{ pg }}">{{ pg }}</a></li>
+			{% else %}
+			    <li><a style="color: black" href="?page={{ pg }}">{{ pg }}</a></li>
+			{% endif %}
+		    {% endfor %}
+		    {% if etiquetas.has_next %}
+			    <li><a style="color: black" href="?page={{ etiquetas.next_page_number }}">Siguiente</a></li>
+		    {% endif %}
+		</ul>	
+
+
+
+
+			<a href='{% url 'nuevaEtiquet' %}' style="background: black; float: right" class="btn btn-primary">Añadir</a>
+
+
+
+
+
+{% endblock %}

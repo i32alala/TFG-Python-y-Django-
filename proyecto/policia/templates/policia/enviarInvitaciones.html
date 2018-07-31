@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+		
+			
+		<center><h2>¿Para que Acto quiere enviar la invitación?</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+                
+                
+	<table class="table">
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+			
+			<tr>
+				<th scope="col"><center>Acto</center></th>
+				
+			</tr>
+		</thead>
+			
+	{% for a in actosInvita %}
+
+
+			<tr>
+				<td style="margin-right: 2%"><center><a href='{% url 'actoDetailInv' a.idActo %}'>{{a.nombreActo}}</a></center></td>
+			</tr>
+	
+
+
+	{% endfor %}
+
+	
+	</table>
+
+		<a href='{% url 'invitaciones' %}' class="btn btn-primary" style="background: black; float: right">Atrás</a>
+
+
+
+
+
+
+{% endblock %}

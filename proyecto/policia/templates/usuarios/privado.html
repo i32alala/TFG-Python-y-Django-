@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block encabezado %}
+	<h1>Bienvenido </h1>
+{% endblock %}
+
+{% block saludoUsuarioRegistrado %}
+
+	<p>Bienvenido {{usuario.username|upper}}</p>
+{% endblock %}

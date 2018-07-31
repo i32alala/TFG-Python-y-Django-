@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block nuevos %}
+
+	 <center><h2>Añadir etiqueta</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+
+
+                <form role="form" action="{% url 'nuevaEtiquet' %}" method="post">
+
+     		{% csrf_token %}
+		
+		<div class="form-row">
+          			<div class="form-group col-md-6">
+					{{ formulario.nombreEtiqueta|bootstrap }}
+				</div>
+				<div class="form-group col-md-6">
+					{{formulario.parteAbajo|bootstrap}}
+				</div>
+		</div>
+		<div class="form-row">
+          			<div class="form-group col-md-6">
+					{{ formulario.parteArriba|bootstrap }}
+				</div>
+				<div class="form-group col-md-6">
+					{{formulario.gorro|bootstrap}}
+				</div>
+		</div>
+		<div class="form-row">
+          			<div class="form-group col-md-6">
+					{{ formulario.zapatos|bootstrap }}
+				</div>
+				<div class="form-group col-md-6">
+					{{formulario.corbata|bootstrap}}
+				</div>
+		</div>
+		<div class="form-row">
+          			<div class="form-group col-md-6">
+					{{ formulario.medias|bootstrap }}
+				</div>
+				<div class="form-group col-md-6">
+					{{formulario.cinturon|bootstrap}}
+				</div>
+		</div>
+		<div class="form-row">
+          			<div class="form-group col-md-6">
+					{{ formulario.bolso|bootstrap }}
+				</div>
+				<div class="form-group col-md-6">
+					{{formulario.falda|bootstrap}}
+				</div>
+		</div>
+		<div class="form-row">
+          			<div class="form-group col-md-6">
+					{{ formulario.chaqueta|bootstrap }}
+				</div>
+				<div class="form-group col-md-6">
+					{{formulario.jersey|bootstrap}}
+				</div>
+		</div>
+
+		
+		<button class="btn btn-large btn-primary" type="submit" style="background: black; margin-left: 2%"">Añadir</button>
+		<a href='{% url 'etiqueta' %}' tyle=" margin-right: 2%" class="btn cancelar">Cancelar</a>
+	</form>
+{% endblock %}

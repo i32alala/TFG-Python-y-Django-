@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+                <form role="form" action="" method="post">
+
+                        <div class="modal-header">
+                <a href='{% url 'organismos' %}' class="close">x</a>
+                <h3>Datos</h3>
+            </div>
+            <div class="modal-body">
+                                {% csrf_token %}
+                                <div class="panel panel-default">
+                                        <div class="panel-body">
+
+
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<td>Nombre </td>
+				<td>Apellido </td>
+				<td>Cargo</td>
+				<td>Correo</td>
+
+			</tr>
+		</thead>
+			<tr>
+				<td>{{detalPersona.nombre}}</td>
+				<td>{{detalPersona.apellido}}</td>
+				<td>{{detalPersona.cargo}}</td>
+        			<td>{{detalPersona.correo}}</a></td>
+			</tr>
+	</table>
+
+ </div>
+                                </div>
+                        </div>
+
+                </form>
+        </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+

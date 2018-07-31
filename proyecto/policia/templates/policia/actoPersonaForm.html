@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block nuevos %}
+<div>
+				<div>
+
+								<form role="form" action="{% url 'nuevoactoPersona' %}" method="post" enctype='multipart/form-data'>
+
+												<div>
+								<a href='{% url 'actos' %}' class="close">x</a>
+								<h3>Crear Acaaaato</h3>
+						</div>
+						<div>
+																{% csrf_token %}
+																<div >
+																				<div class="panel-body">
+																				
+																				
+ 																							{{ formulario.as_p }}
+	
+																	</div>
+																</div>
+												</div>
+												<div >
+																<div>
+																				<input type="submit" class="btn btn-primary" name="submit" value="Guardar">
+																				<a href='{% url 'salas' %}' class="btn btn-default">Cancelar</a>
+																</div>
+												</div>
+								</form>
+				</div>
+</div>
+{% endblock %}

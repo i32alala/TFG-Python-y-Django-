@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load bootstrap %}
+
+{% block nuevos %}
+
+
+                <form role="form" action="{% url 'nuevaSala' %}" method="post" enctype='multipart/form-data'>
+
+ 
+       <center><h2>Añadir Sala</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+    
+
+                                {% csrf_token %}
+ 				
+ 		<div class="form-row">
+          			<div class="form-group col-md-6">
+ 				
+                                                {{ formulario.idSala | bootstrap}}
+                                                
+                                </div>
+				<div class="form-group col-md-6">
+                                                {{ formulario.nombreSala | bootstrap}}
+                                                
+                                </div>
+                </div>
+                <div class="form-group" style="margin-left: 16px; margin-right: 16px;">
+				{{ formulario.descripcionSala | bootstrap}}
+		</div>
+		
+		<div class="form-row">
+          			<div class="form-group col-md-6">
+                                                {{ formulario.numAsientos | bootstrap}}
+                                </div>
+                                <div class="form-group col-md-6">                
+                                                {{ formulario.imagenSala | bootstrap}}
+                                </div>
+                </div>
+                <div class="form-row">
+          			<div class="form-group col-md-6">
+                                                {{ formulario.numFilas | bootstrap}}
+                                </div>
+                                <div class="form-group col-md-6" style="margin-top: -13%">    
+                                                {{ formulario.numColumnas | bootstrap}}
+                                 </div>
+                </div>           
+
+                                        <input type="submit" class="btn btn-primary" style="background: black; margin-left: 2%" name="submit" value="Guardar">
+                                        <a href='{% url 'salas' %}' style=" margin-right: 2%" class="btn cancelar">Cancelar</a>
+
+                </form>
+
+{% endblock %}

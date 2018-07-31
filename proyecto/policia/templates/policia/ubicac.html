@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% if confirmadas %}
+
+	<center><h2> Ordenar personas para el acto: {{noticias.nombreActo}}</h2></center>
+                <hr style="border: 1px solid #eee !important"/>
+
+
+
+ <table class="table table-hover">		
+		<thead class="thead-dark" style="border: 1px solid black; background: black none repeat scroll 0% 0%; color: white;">
+			<tr>
+				<td scope="col"><center>Numeración</center></td>
+				<td scope="col"><center>Nombre</center></td>
+				<td scope="col"><center>Apellidos</center></td>
+				<td scope="col"><center>Orden</center></td>
+				<td scope="col"><center>Insertar orden</center></td>	
+				<td scope="col"><center>Asignar</center></td>					
+				
+			</tr>
+		</thead>
+ 
+
+{% for c in confirmadas %}
+	<form action="{% url 'nuevoOrdena'  %}" method="POST">
+ {% csrf_token %}
+ 
+
+ 
+ 
+ {% if c.asistencia == 1 %}
+ 
+ 		<tr>
+			<td><center>{{forloop.counter}}</center></td>
+			<td><center>{{c.person}}</center></td>
+			<td><center>{{c.person.apellido}}</center></td>
+			<td><center>{{c.orden}}</center></td>
+              <input type="hidden" name="person" value="{{c.person.pk}} " />
+              <input type="hidden" name="acto" value="{{c.acto.pk}} " />
+                           
+                           
+  		 <input type="checkbox" name="asistencia" checked="checked" style="display:none;" />
+             <td><center> <input class="form-control" style="width: 20%" type="text" name="orden" /></td></center>
+              <td><center><input class="form-control" style="width: 100%" type="submit" value="Guardar"  /></center></td>
+   {% endif %}
+           </form>
+      			      				
+      		{% endfor %}
+      		
+      		</table>
+      		
+      		<a href="../../generarOrden/{{ noticias.pk }}" class="btn btn-primary" style="background: black; float: left">Protocolo</a>
+
+
+
+      		<a href='{% url 'actos' %}' class="btn btn-primary" style="background: black; float: right">Atrás</a>
+      		
+      	{% else %}
+      	
+      	<center><h1>No puedes ordenar a nadie si aún no ha confirmado su asistencia</h1></center>
+      	<a href='{% url 'actos' %}' class="btn btn-primary" style="background: black; float: right">Atrás</a>
+
+{% endif %}
+{% endblock %}

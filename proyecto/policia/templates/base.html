@@ -1,0 +1,113 @@
+{% load static %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+	{% block title %}<title> CABECERA </title> {% endblock %}
+	<meta charset="utf-8">
+
+	
+	<meta charset="utf-8">
+		<link href='http://fonts.googleapis.com/css?family=Fauna+One|Roboto|Pacifico' rel='stylesheet' type='text/css'/>
+
+
+		<link type='text/css' rel='stylesheet' href="{% static "css/bootstrap.css" %}" />
+		<link type='text/css' rel='stylesheet' href="{% static "css/multiple-select.css" %}" />
+		<link type='text/css' rel='stylesheet' href="{% static "css/styles.css" %}" />
+		<link type='text/css' rel='stylesheet' href="{% static "css/bootstrap.min.css" %}" />
+		<link type='text/css' rel='stylesheet' href="{% static "css/bootstrap-theme.css" %}" />
+		<link type='text/css' rel='stylesheet' href="{% static "css/bootstrap-theme.min.css" %}" />
+		<link type='text/css' rel='stylesheet' href="{% static "css/bootstrap-theme.min.css.map" %}" />
+		<link type='text/css' rel='stylesheet' href="{% static "css/bootstrap-theme.css.map" %}" />
+		<link type='text/css' rel='stylesheet' href="{% static "css/bootstrap.min.css.map" %}" />
+		<link type='text/css' rel='stylesheet' href="{% static "css/bootstrap.css.map" %}" />
+		 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdn.rawgit.com/jackmoore/colorbox/master/jquery.colorbox-min.js"></script>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/jackmoore/colorbox/master/example1/colorbox.css" />
+    
+    
+    		    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="{% static "js/bootstrap.js" %}"></script>
+		<script src="{% static "js/bootstrap.min.js" %}"></script>
+		<script src="{% static "js/jquery.min.js" %}"></script>
+		<script src="{% static "js/npm.js" %}"></script>
+		<script src="{% static "js/jquery.min.map" %}"></script>
+		<script src="{% static "js/jquery.js" %}"></script>
+		<script src="{% static "js/jspdf.js" %}"></script>
+		<script src="{% static "js/jquery-2.1.3.js" %}"></script>
+		<script src="{% static "js/pdfFromHTML.js" %}"></script>
+		<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' type='text/javascript'></script>
+		 <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<header id="main-header">
+	
+	<a id="logo-header" href='{% url 'index' %}'>
+		<span class="site-name"><img src="/policia/media/img/policia-nacional_NhuTUoC.png" class="img-responsive" style="width: 34px; height: 42px; margin-bottom: -26px; margin-left: 12px;"></spam>
+		<span class="site-name" style="margin-left: 29%">CUERPO NACIONAL DE POLICIA</span>
+	</a>
+	
+
+	<nav>
+		<ul>
+			<li><a href='{% url 'salas' %}'>Salas / Asientos</a></li>
+			<li><a href='{% url 'actos' %}'>Actos</a></li>
+			<li><a href='{% url 'organismos' %}'>Organismos</a></li>
+			<li><a href='{% url 'mostrarPersonas'%}'>Personas</a></li>
+			<li><a href='{% url 'invitaciones' %}'>Invitaciones</a></li>
+			<li><a href='{% url 'etiqueta' %}'>Etiquetas</a></li>
+			<li><a href='{% url 'deslogueo' %}'>Logout</a></li>
+			
+		</ul>
+	</nav>
+	
+	
+		
+</header>
+
+	<section id="main-content">
+		<article>
+			<div class="content">
+					
+	{% block slidebar %}{% endblock %}
+
+	
+
+
+
+	
+		{% block content %}{% endblock %}
+		{% block encabezado %}{% endblock %}
+		{% block contentPersonas %}{% endblock%}
+		{% block Login %}{% endblock %}
+		{% block nuevos %}{% endblock %}
+	{% if usuario.is_authenticated %}
+		{% block saludoUsuarioRegistrado %}{% endblock %}
+	{% endif %}
+		{% block contenido %}{% endblock %}
+	
+
+			</div>
+		</article>
+	</section>
+	
+
+	{% block contenidoLogin %}
+	{% endblock %}
+	<footer id="main-footer">
+		<center><p style="color: white; margin-top: 7px">&copy; 2018 Jose Antonio Albalat Almenara</p></center>
+	</footer>
+
+</body>
+</html>
